@@ -18,9 +18,18 @@
     "test:e2e": "playwright test"
   },
   "dependencies": {
+    "@codemirror/commands": "catalog:",
+    "@codemirror/lang-markdown": "catalog:",
+    "@codemirror/language-data": "catalog:",
+    "@codemirror/state": "catalog:",
+    "@codemirror/view": "catalog:",
+    "@comark/vue": "catalog:",
     "@vme/ui": "workspace:*",
     "@vueuse/core": "catalog:",
+    "codemirror": "catalog:",
+    "comark": "catalog:",
     "pinia": "catalog:",
+    "shiki": "catalog:",
     "vue": "catalog:",
     "vue-router": "catalog:"
   },

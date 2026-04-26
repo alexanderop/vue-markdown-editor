@@ -50,7 +50,7 @@ Format: `[[section/file-name]]`. Resolution order: same directory, then relative
 
 ## After Writing
 
-Update `brain/index.md` for any files you added or removed. Also update the relevant entrypoint when applicable. Keep indexes link-only and scannable.
+Do **not** edit `brain/index.md` — the `auto-index-brain.sh` PostToolUse hook regenerates it. Do update the relevant subindex (`brain/principles.md`, `brain/codebase/index.md`, `brain/plans/index.md`) when applicable. Keep subindexes link-only and scannable.
 
 ## Durability Test
 

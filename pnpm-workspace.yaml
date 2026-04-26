@@ -19,6 +19,12 @@ onlyBuiltDependencies:
 # forces an explicit decision instead of silent skipping.
 strictDepBuilds: true
 catalog:
+  '@codemirror/commands': ^6.10.3
+  '@codemirror/lang-markdown': ^6.5.0
+  '@codemirror/language-data': ^6.5.2
+  '@codemirror/state': ^6.6.0
+  '@codemirror/view': ^6.41.1
+  '@comark/vue': ^0.3.1
   '@playwright/test': ^1.59.1
   '@tailwindcss/vite': ^4.1.18
   '@testing-library/vue': ^8.1.0
@@ -33,9 +39,12 @@ catalog:
   axe-core: ^4.11.2
   class-variance-authority: ^0.7.1
   clsx: ^2.1.1
+  codemirror: ^6.0.2
+  comark: ^0.3.1
   jsdom: ^29.0.2
   pinia: ^3.0.4
   playwright: ^1.59.1
+  shiki: ^4.0.2
   tailwind-merge: ^3.3.2
   tailwindcss: ^4.1.18
   vite: ^8.0.8

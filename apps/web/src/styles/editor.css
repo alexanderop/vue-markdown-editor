@@ -1,0 +1,102 @@
+/* One low-specificity rule per element family — keep overrides out so component
+ * authors don't fight cascade order. */
+
+.preview-pane {
+  background-color: var(--background);
+  color: var(--foreground);
+  padding: 24px 32px 64px;
+  font-family: var(--font-sans);
+}
+
+.preview-pane :where(h1, h2, h3, h4, h5, h6) {
+  color: var(--foreground);
+  font-family: var(--font-display);
+  letter-spacing: -0.012em;
+  margin: 1.4em 0 0.5em;
+  line-height: 1.2;
+}
+
+.preview-pane :where(h1) {
+  font-size: 22px;
+  font-weight: 590;
+  margin-top: 0;
+}
+
+.preview-pane :where(h2) {
+  font-size: 18px;
+  font-weight: 540;
+}
+
+.preview-pane :where(h3) {
+  font-size: 16px;
+  font-weight: 540;
+}
+
+.preview-pane :where(p, li) {
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--foreground);
+}
+
+.preview-pane :where(p) {
+  margin: 0 0 1em;
+}
+
+.preview-pane :where(ul, ol) {
+  padding-left: 1.4em;
+  margin: 0 0 1em;
+}
+
+.preview-pane :where(li) {
+  margin: 0.25em 0;
+}
+
+.preview-pane :where(blockquote) {
+  border-left: 2px solid var(--border-strong);
+  margin: 0 0 1em;
+  padding: 0.25em 0 0.25em 1em;
+  color: var(--muted-foreground);
+}
+
+.preview-pane :where(code) {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background-color: var(--muted);
+  border-radius: var(--radius-xs);
+  padding: 0.1em 0.35em;
+}
+
+.preview-pane :where(pre) {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.55;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  margin: 0 0 1em;
+  overflow-x: auto;
+}
+
+.preview-pane :where(pre code) {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  font-size: inherit;
+}
+
+.preview-pane :where(a) {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--duration-instant) var(--ease-out);
+}
+
+.preview-pane :where(a:hover) {
+  border-bottom-color: var(--accent);
+}
+
+.preview-pane :where(hr) {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 1.5em 0;
+}

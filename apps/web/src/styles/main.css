@@ -6,3 +6,4 @@
 @source "../../../../packages/ui/src/**/*.{vue,ts}";
 
 @import '@vme/ui/styles.css';
+@import './editor.css';

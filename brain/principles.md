@@ -18,12 +18,20 @@
 - [[principles/migrate-callers-then-delete-legacy-apis]]
 - [[principles/serialize-shared-state-mutations]]
 - [[principles/vue-layered-components]]
+- [[principles/vueuse-style-composables]]
+
+## Domain
+
+- [[principles/codemirror-imperative-shell]]
+- [[principles/comark-rendering-pipeline]]
 
 ## Verification
 
 - [[principles/prove-it-works]]
 - [[principles/verify-with-agent-browser]]
 - [[principles/vitest-browser-vs-playwright]]
+- [[principles/test-composables-by-category]]
+- [[principles/wrap-ui-with-page-objects]]
 - [[principles/fix-root-causes]]
 
 ## Delegation

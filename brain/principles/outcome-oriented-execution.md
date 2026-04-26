@@ -16,3 +16,5 @@ Optimize for the intended, verifiable end state rather than preserving smooth in
 - Declare where temporary breakage is acceptable
 - Keep high-signal checks for actively touched areas while migrating
 - Require full static and runtime verification at plan completion
+
+Pairs with [[migrate-callers-then-delete-legacy-apis]] — same posture at API scope: don't keep dual paths alive to soften the transition.

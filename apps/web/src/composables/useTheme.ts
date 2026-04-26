@@ -1,4 +1,4 @@
-import { useColorMode } from '@vueuse/core'
+import { useColorMode, useMagicKeys, whenever } from '@vueuse/core'
 
 export const useTheme = () => {
   const mode = useColorMode({
@@ -8,5 +8,21 @@ export const useTheme = () => {
     storageKey: 'vme-theme',
     modes: { light: '', dark: 'dark' },
   })
-  return { mode }
+
+  const keys = useMagicKeys({
+    passive: false,
+    onEventFired(event) {
+      const isToggleCombo = event.key === 'L' && (event.metaKey || event.ctrlKey) && event.shiftKey
+      if (isToggleCombo) event.preventDefault()
+    },
+  })
+
+  const toggleMode = () => {
+    mode.value = mode.value === 'dark' ? 'light' : 'dark'
+  }
+
+  whenever(() => keys['Meta+Shift+L']?.value === true, toggleMode)
+  whenever(() => keys['Ctrl+Shift+L']?.value === true, toggleMode)
+
+  return { mode, toggleMode }
 }
