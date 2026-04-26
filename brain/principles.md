@@ -16,6 +16,7 @@
 
 ## Verification
 - [[principles/prove-it-works]]
+- [[principles/verify-with-agent-browser]]
 - [[principles/fix-root-causes]]
 
 ## Delegation

@@ -14,10 +14,11 @@
 - [[principles/migrate-callers-then-delete-legacy-apis]]
 - [[principles/never-block-on-the-human]]
 - [[principles/outcome-oriented-execution]]
+- [[principles/prove-it-works]]
 - [[principles/redesign-from-first-principles]]
 - [[principles/serialize-shared-state-mutations]]
 - [[principles/subtract-before-you-add]]
-- [[principles/prove-it-works]]
+- [[principles/verify-with-agent-browser]]
 
 ## Plans
 - [[plans/index]]
