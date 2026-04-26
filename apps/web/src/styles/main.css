@@ -1,0 +1,7 @@
+@import 'tailwindcss';
+
+/* Tailwind v4 only scans the project root by default — explicitly include the
+ * monorepo's UI package so its `cn(...)` strings produce utilities. */
+@source "../../../../packages/ui/src/**/*.{vue,ts}";
+
+@import '@vme/ui/styles.css';

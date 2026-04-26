@@ -1,4 +1,4 @@
-import { test as base, expect } from '@playwright/test'
+import { test as base } from '@playwright/test'
 
 // Shared e2e fixture: surfaces hydration warnings and CSP violations as test
 // failures rather than letting them sneak past silently.
@@ -28,11 +28,10 @@ export const test = base.extend({
     })
 
     await page.addInitScript(() => {
-      window.addEventListener('securitypolicyviolation', (event) => {
+      globalThis.addEventListener('securitypolicyviolation', (event) => {
         // Stash on window so the assertion below can read it via evaluate().
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const w = window as any
-        w.__cspViolations ||= []
+        const w = globalThis as unknown as { __cspViolations?: string[] }
+        w.__cspViolations ??= []
         w.__cspViolations.push(`${event.violatedDirective} blocked ${event.blockedURI}`)
       })
     })
@@ -41,9 +40,8 @@ export const test = base.extend({
 
     const cspFromPage = await page
       .evaluate(() => {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const w = window as any
-        return (w.__cspViolations as string[] | undefined) ?? []
+        const w = globalThis as unknown as { __cspViolations?: string[] }
+        return w.__cspViolations ?? []
       })
       .catch(() => [] as string[])
     cspViolations.push(...cspFromPage)
@@ -57,4 +55,4 @@ export const test = base.extend({
   },
 })
 
-export { expect }
+export { expect } from '@playwright/test'

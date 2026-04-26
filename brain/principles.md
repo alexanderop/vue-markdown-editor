@@ -20,6 +20,7 @@
 
 - [[principles/prove-it-works]]
 - [[principles/verify-with-agent-browser]]
+- [[principles/vitest-browser-vs-playwright]]
 - [[principles/fix-root-causes]]
 
 ## Delegation

@@ -20,6 +20,7 @@
 - [[principles/serialize-shared-state-mutations]]
 - [[principles/subtract-before-you-add]]
 - [[principles/verify-with-agent-browser]]
+- [[principles/vitest-browser-vs-playwright]]
 
 ## Codebase
 

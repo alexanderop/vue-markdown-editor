@@ -1,7 +1,8 @@
 // @vitest-environment node
 import { readFile, readdir } from 'node:fs/promises'
-import { join, relative } from 'node:path'
+import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+
 import { describe, expect, it } from 'vitest'
 
 // Meta-test: every component test that runs in browser mode must include at
@@ -12,7 +13,7 @@ import { describe, expect, it } from 'vitest'
 // Lives in the unit project on purpose: it reads files, doesn't need a DOM,
 // and runs every CI build (browser project may be slower).
 const ROOT = fileURLToPath(new URL('../', import.meta.url))
-const SRC = join(ROOT, 'src')
+const SRC = path.join(ROOT, 'src')
 const REQUIRED_HELPER = 'expectNoA11yViolations'
 const BROWSER_TEST_FILE = /\.browser\.(?:test|spec)\.(?:ts|tsx)$/
 
@@ -20,10 +21,12 @@ async function walk(dir: string): Promise<string[]> {
   const entries = await readdir(dir, { withFileTypes: true })
   const out: string[] = []
   for (const entry of entries) {
-    const full = join(dir, entry.name)
+    const full = path.join(dir, entry.name)
     if (entry.isDirectory()) {
       out.push(...(await walk(full)))
-    } else if (entry.isFile() && BROWSER_TEST_FILE.test(entry.name)) {
+      continue
+    }
+    if (entry.isFile() && BROWSER_TEST_FILE.test(entry.name)) {
       out.push(full)
     }
   }
@@ -44,7 +47,7 @@ describe('a11y meta-test', () => {
     for (const file of files) {
       const contents = await readFile(file, 'utf8')
       if (!contents.includes(REQUIRED_HELPER)) {
-        missing.push(relative(ROOT, file))
+        missing.push(path.relative(ROOT, file))
       }
     }
 

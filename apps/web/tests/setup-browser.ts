@@ -1,4 +1,12 @@
 // Setup file for component tests running in Vitest browser mode.
-// Re-export the a11y helper here so test files can `import { expectNoA11yViolations }`
-// without each test having to know where the helper lives.
+//
+// Imports the app's `main.css` so Tailwind utilities are present when
+// components are rendered in the test page. Without this, screenshots and
+// any layout-dependent assertion run against unstyled HTML.
+//
+// `@testing-library/vue` registers its own `afterEach(cleanup)` at module
+// load time — don't re-register it here, that produces double-cleanup
+// `removeChild` errors when both hooks fire.
+import '../src/styles/main.css'
+
 export { expectNoA11yViolations } from './a11y'

@@ -1,6 +1,8 @@
 import { fileURLToPath } from 'node:url'
+
 import { mergeConfig, defineConfig } from 'vitest/config'
 import { playwright } from '@vitest/browser-playwright'
+
 import viteConfig from './vite.config'
 
 // Browser mode: required for component tests that touch DOM behaviour jsdom

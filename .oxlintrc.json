@@ -1,10 +1,30 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["eslint", "typescript", "unicorn", "oxc", "vue", "vitest"],
+  "plugins": ["eslint", "typescript", "unicorn", "oxc", "vue", "vitest", "import"],
   "env": {
     "browser": true
   },
   "categories": {
-    "correctness": "error"
-  }
+    "correctness": "error",
+    "suspicious": "warn"
+  },
+  "rules": {
+    "typescript/no-explicit-any": "error",
+    "eslint/no-console": ["error", { "allow": ["warn", "error"] }]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/*.{test,spec}.{ts,tsx,js,jsx}",
+        "**/__tests__/**/*",
+        "**/e2e/**/*",
+        "**/tests/**/*"
+      ],
+      "rules": { "eslint/no-console": "off" }
+    },
+    {
+      "files": ["apps/api/**/*.ts"],
+      "rules": { "eslint/no-console": "off" }
+    }
+  ]
 }
