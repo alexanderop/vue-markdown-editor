@@ -43,6 +43,6 @@ When writing a composable, follow the patterns VueUse uses. They make composable
 - Throwing on the server because `window` is undefined; or stubbing it globally instead of guarding at the call site.
 - Returning raw mutable refs for read-only state — callers will mutate them and you'll inherit the bug.
 
-Pairs with [[prefer-vueuse]] (use theirs first), [[vue-layered-components]] (composables are the logic layer; this is how that layer is shaped), and [[test-composables-by-category]] (independent vs dependent — these patterns keep most composables independent).
+Pairs with [[prefer-vueuse]] (use theirs first), [[vue-layered-components]] (composables are the logic layer; this is how that layer is shaped), [[test-composables-by-category]] (independent vs dependent — these patterns keep most composables independent), and [[boundary-discipline]] (`MaybeRefOrGetter` inputs and SSR guards are boundary discipline applied to composables).
 
 Source: Alexander Opalic, _Vue Composables Style Guide: Lessons from VueUse's Codebase_ (own writing, derived from the VueUse source).

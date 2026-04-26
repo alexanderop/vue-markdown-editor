@@ -27,6 +27,25 @@ const baseTheme = {
   '&.cm-focused .cm-selectionBackground': { backgroundColor: 'var(--accent-soft)' },
   '&.cm-focused': { outline: 'none' },
   '.cm-scroller': { lineHeight: '1.55' },
+  '.cm-panels': {
+    backgroundColor: 'var(--background)',
+    color: 'var(--foreground)',
+    borderTop: '1px solid var(--border)',
+  },
+  '.cm-panel.cm-vim-panel': {
+    backgroundColor: 'var(--background)',
+    color: 'var(--foreground)',
+    fontFamily: FONT_MONO,
+    fontSize: '12px',
+    padding: '4px 8px',
+  },
+  '.cm-panel.cm-vim-panel input': {
+    backgroundColor: 'transparent',
+    color: 'var(--foreground)',
+    border: 'none',
+    outline: 'none',
+    fontFamily: FONT_MONO,
+  },
 }
 
 const surface = {

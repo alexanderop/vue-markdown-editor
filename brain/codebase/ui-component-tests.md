@@ -49,9 +49,14 @@ _must_ live in browser mode.
   with role-based queries.
 - **Test naming: `it('should …')`** so each test reads aloud as a sentence.
   `renderEach`'s template is `'should render %s correctly'`.
+- **Import `userEvent` from `vitest/browser`, not `@vitest/browser/context`.**
+  The latter is deprecated in Vitest 4. Existing tests already use the new
+  path — keep it that way when copying patterns from older docs.
 
 ## Running
 
 - `pnpm --filter @vme/web test:browser` — component tests.
 - `pnpm --filter @vme/web test` — unit + a11y meta-test (jsdom, fast).
 - `pnpm test` from the root — both projects.
+
+Pairs with [[../principles/vitest-browser-vs-playwright]] (which layer goes where), [[../principles/test-composables-by-category]] (composables don't go through this file), and [[../principles/wrap-ui-with-page-objects]] (E2E layer above this).

@@ -1,7 +1,9 @@
 import type { Page } from '@playwright/test'
 
 import { SCRATCH_STORAGE_KEY } from '../src/composables/usePersistedDoc'
+import { VIM_STORAGE_KEY } from '../src/composables/useVim'
 
+import { EditorPage } from './pages/EditorPage'
 import { test, expect } from './fixtures'
 
 const clearScratch = async (page: Page) => {
@@ -68,6 +70,48 @@ test('toggles theme via Cmd/Ctrl+Shift+L without rebuilding the editor', async (
   expect(await cmContentAfter?.evaluate((node, before) => node === before, cmContentBefore)).toBe(
     true,
   )
+})
+
+test('vim mode toggles via keyboard and exposes status bar', async ({ page }) => {
+  await page.goto('/')
+  await page.evaluate(
+    ([scratchKey, vimKey, body]) => {
+      globalThis.localStorage.setItem(scratchKey, body)
+      globalThis.localStorage.removeItem(vimKey)
+    },
+    [SCRATCH_STORAGE_KEY, VIM_STORAGE_KEY, 'line one\nline two\nline three\n'],
+  )
+  await page.reload()
+  await expect(page.locator('.cm-content')).toBeVisible()
+
+  const editor = new EditorPage(page)
+
+  expect(await editor.vimMode()).toBeNull()
+
+  await editor.toggleVim()
+  await expect(page.locator('.cm-vim-panel')).toBeVisible()
+  expect(await editor.vimMode()).toMatch(/.*/)
+
+  const beforeLines = await editor.lineCount()
+  await page.keyboard.press('Escape')
+  await editor.normalCommand('dd')
+  await expect.poll(() => editor.lineCount()).toBe(beforeLines - 1)
+
+  const docAfterDelete = await page.locator('.cm-content').textContent()
+
+  await editor.toggleVim()
+  await expect(page.locator('.cm-vim-panel')).toHaveCount(0)
+  await expect(page.locator('.cm-content')).toHaveText(docAfterDelete)
+
+  const persisted = await page.evaluate(
+    (key) => globalThis.localStorage.getItem(key),
+    VIM_STORAGE_KEY,
+  )
+  expect(persisted).toBe('false')
+
+  await page.reload()
+  await expect(page.locator('.cm-content')).toBeVisible()
+  expect(await editor.vimMode()).toBeNull()
 })
 
 test('logs no console errors during the typing flow', async ({ page }) => {

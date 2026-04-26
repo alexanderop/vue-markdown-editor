@@ -1,11 +1,37 @@
 # Brain
 
+## Codebase
+
+- [[codebase/auto-index-brain-macos-fixes]]
+- [[codebase/eslint-flat-config-shapes]]
+- [[codebase/index]]
+- [[codebase/linear-design-tokens]]
+- [[codebase/oxlint-monorepo-config-path]]
+- [[codebase/oxlint-vue-config-type-aware-trap]]
+- [[codebase/pnpm-strict-dep-builds]]
+- [[codebase/skills-mirror-paths]]
+- [[codebase/style-guide]]
+- [[codebase/tailwind-v4-monorepo-source]]
+- [[codebase/ui-component-tests]]
+- [[codebase/ui-package-layout]]
+- [[codebase/vitest-jsdom-import-meta]]
+
+## Plans
+
+- [[plans/brainstorm-editor-mvp/overview]]
+- [[plans/index]]
+- [[plans/quality-pipeline-setup]]
+- [[plans/vim-keybindings/overview]]
+- [[plans/vim-keybindings/phase-1-add-package]]
+- [[plans/vim-keybindings/phase-2-use-vim-composable]]
+
 ## Principles
 
 - [[principles]]
 - [[principles/boundary-discipline]]
 - [[principles/codemirror-imperative-shell]]
 - [[principles/comark-rendering-pipeline]]
+- [[principles/contract-tests-over-e2e]]
 - [[principles/cost-aware-delegation]]
 - [[principles/encode-lessons-in-structure]]
 - [[principles/exhaust-the-design-space]]
@@ -18,25 +44,16 @@
 - [[principles/migrate-callers-then-delete-legacy-apis]]
 - [[principles/never-block-on-the-human]]
 - [[principles/outcome-oriented-execution]]
+- [[principles/prefer-deep-modules]]
 - [[principles/prefer-vueuse]]
 - [[principles/prove-it-works]]
 - [[principles/redesign-from-first-principles]]
 - [[principles/serialize-shared-state-mutations]]
 - [[principles/subtract-before-you-add]]
+- [[principles/test-composables-by-category]]
 - [[principles/verify-with-agent-browser]]
 - [[principles/vitest-browser-vs-playwright]]
 - [[principles/vue-layered-components]]
-
-## Codebase
-
-- [[codebase/index]]
-- [[codebase/eslint-flat-config-shapes]]
-- [[codebase/vitest-jsdom-import-meta]]
-- [[codebase/oxlint-monorepo-config-path]]
-- [[codebase/style-guide]]
-- [[codebase/oxlint-vue-config-type-aware-trap]]
-- [[codebase/linear-design-tokens]]
-
-## Plans
-
-- [[plans/index]]
+- [[principles/vueuse-style-composables]]
+- [[principles/wrap-ui-with-page-objects]]
+- [[principles/write-tests-not-too-many-mostly-integration]]

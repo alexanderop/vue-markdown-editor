@@ -16,6 +16,7 @@
 - [[principles/boundary-discipline]]
 - [[principles/make-operations-idempotent]]
 - [[principles/migrate-callers-then-delete-legacy-apis]]
+- [[principles/prefer-deep-modules]]
 - [[principles/serialize-shared-state-mutations]]
 - [[principles/vue-layered-components]]
 - [[principles/vueuse-style-composables]]
@@ -32,6 +33,8 @@
 - [[principles/vitest-browser-vs-playwright]]
 - [[principles/test-composables-by-category]]
 - [[principles/wrap-ui-with-page-objects]]
+- [[principles/write-tests-not-too-many-mostly-integration]]
+- [[principles/contract-tests-over-e2e]]
 - [[principles/fix-root-causes]]
 
 ## Delegation

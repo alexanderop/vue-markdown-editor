@@ -122,6 +122,7 @@ When in doubt: state lives in a `StateField`; presentation in `Decoration`s deri
 - **Querying coordinates outside the viewport.** CM only renders visible lines; `coordsAtPos` for an offscreen position returns `null`. Scroll first, then measure in `requestMeasure`.
 - **Forgetting `view.destroy()`** in `onBeforeUnmount`. Leaks handlers and breaks SSR/HMR.
 - **Mixing extensions per-render.** Building the array inside a render path triggers full reconfiguration on every change. Define extensions as module-level constants; use `Compartment` for the parts that actually swap.
+- **Driving initial config with `watch(..., { immediate: true })`.** The watcher fires synchronously during `setup`, _before_ the composable's `onMounted` creates the view — so `setTheme` / `setLanguage` see no view and silently no-op. Apply initial state inside `onMounted` (or at view-construction time via `extensions:`); use the watcher only for subsequent changes.
 
 ## What's authoritative
 
@@ -134,4 +135,4 @@ CM moves; this file is design intent, not API truth.
 - `https://github.com/codemirror/dev` — umbrella repo / issue tracker
 - `https://discuss.codemirror.net/` — forum, where Marijn answers gnarly questions
 
-Pairs with [[boundary-discipline]] (CM's imperative shell sits at one edge; everything above is pure), [[vue-layered-components]] (composable owns the view, component is just a mount point, controller wires both halves), [[comark-rendering-pipeline]] (the doc string is the only thing that crosses), and [[prefer-vueuse]] (check before hand-rolling lifecycle glue).
+Pairs with [[boundary-discipline]] (CM's imperative shell sits at one edge; everything above is pure), [[vue-layered-components]] (composable owns the view, component is just a mount point, controller wires both halves), [[comark-rendering-pipeline]] (the doc string is the only thing that crosses), [[prefer-vueuse]] (check before hand-rolling lifecycle glue), and [[vueuse-style-composables]] (the composable above takes the VueUse shape — `MaybeRefOrGetter` inputs, `shallowRef` for the view, `tryOnCleanup`/`onBeforeUnmount` teardown).
