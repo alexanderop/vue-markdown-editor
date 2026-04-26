@@ -11,6 +11,8 @@ blockExoticSubdeps: true
 # Postinstall scripts are off by default in pnpm 10; allowlist the ones we trust.
 onlyBuiltDependencies:
   - esbuild
+  - lefthook
+  - unrs-resolver
   - vue-demi
 
 # Fail install if a dep wants to run a script that isn't in the allowlist —
