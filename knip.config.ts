@@ -27,8 +27,21 @@ const config: KnipConfig = {
       project: ['eslint-local-rules/**/*.js'],
     },
     'apps/web': {
-      entry: ['tests/**/*.ts', 'e2e/**/*.{test,spec}.ts', 'e2e/fixtures.ts', 'env.d.ts'],
+      entry: [
+        'tests/**/*.ts',
+        'e2e/**/*.{test,spec}.ts',
+        'e2e/fixtures.ts',
+        'env.d.ts',
+        // tryCatch is the eslint-enforced escape hatch for try/catch in src/.
+        // Keep it as an entry so knip doesn't flag it before any feature uses it.
+        'src/lib/tryCatch.ts',
+      ],
       project: ['src/**/*.{ts,tsx,vue}', 'tests/**/*.ts', 'e2e/**/*.ts'],
+      // tailwindcss: imported via `@import 'tailwindcss'` in src/styles/main.css,
+      //   which knip's vue-only style compiler doesn't see.
+      // @vitest/browser: implicit peer required by `browser.enabled` in
+      //   vitest.config.browser.ts; loaded by vitest, never imported directly.
+      ignoreDependencies: ['tailwindcss', '@vitest/browser'],
     },
     'apps/api': {},
     'packages/*': {},

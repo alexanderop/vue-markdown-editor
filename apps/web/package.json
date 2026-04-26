@@ -18,14 +18,12 @@
     "test:e2e": "playwright test"
   },
   "dependencies": {
-    "@vme/shared": "workspace:*",
     "@vme/ui": "workspace:*",
     "pinia": "catalog:",
     "vue": "catalog:",
     "vue-router": "catalog:"
   },
   "devDependencies": {
-    "@axe-core/playwright": "catalog:",
     "@playwright/test": "catalog:",
     "@tailwindcss/vite": "catalog:",
     "@testing-library/vue": "catalog:",

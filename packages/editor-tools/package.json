@@ -14,8 +14,5 @@
     "lint": "oxlint . --fix && eslint . --fix --cache",
     "format": "oxfmt src/",
     "test": "vitest run --config vitest.config.ts"
-  },
-  "dependencies": {
-    "@vme/shared": "workspace:*"
   }
 }

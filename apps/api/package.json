@@ -11,9 +11,6 @@
     "format": "oxfmt src/",
     "test": "vitest run --config vitest.config.ts"
   },
-  "dependencies": {
-    "@vme/shared": "workspace:*"
-  },
   "devDependencies": {
     "@types/node": "catalog:"
   }
