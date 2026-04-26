@@ -14,8 +14,10 @@ INDEX="${BRAIN_DIR}/index.md"
 [ -d "$BRAIN_DIR" ] || exit 0
 [ -f "$INDEX" ] || exit 0
 
-# All .md files except index.md — relative paths without .md extension
-disk=$(find "$BRAIN_DIR" -name "*.md" ! -name "index.md" -type f \
+# All .md files except the top-level brain/index.md — relative paths without .md extension.
+# Use -path (portable on BSD/macOS and GNU find) instead of -name, so subdir index.md
+# files like brain/plans/index.md are kept.
+disk=$(find "$BRAIN_DIR" -type f -name "*.md" ! -path "${BRAIN_DIR}/index.md" \
     | sed "s|^${BRAIN_DIR}/||; s|\.md$||" \
     | sort)
 
@@ -44,14 +46,19 @@ dirs=$(echo "$disk" | grep '/' | sed 's|/.*||' | sort -u)
     for section in $dirs; do
         files=$(echo "$disk" | grep "^${section}\(/\|$\)" || true)
         [ -z "$files" ] && continue
-        # Capitalize first letter for header
-        header="$(echo "$section" | sed 's/./\U&/')"
+        # Capitalize first letter for header (portable: BSD sed has no \U)
+        header="$(echo "$section" | awk '{print toupper(substr($0,1,1)) substr($0,2)}')"
         printf '\n## %s\n' "$header"
         echo "$files" | emit_files
     done
 
-    # Standalone files (not in any subdirectory)
+    # Standalone files: not in any subdirectory AND not already listed
+    # alongside a section directory of the same name (e.g. principles.md
+    # next to a principles/ directory — already emitted under "Principles").
     standalone=$(echo "$disk" | grep -v '/' || true)
+    if [ -n "$dirs" ] && [ -n "$standalone" ]; then
+        standalone=$(echo "$standalone" | grep -vxF "$dirs" || true)
+    fi
     if [ -n "$standalone" ]; then
         printf '\n## Other\n'
         echo "$standalone" | emit_files
