@@ -100,10 +100,10 @@ export default defineConfig({
   webServer: {
     /**
      * Use the dev server by default for faster feedback loop.
-     * Use the preview server on CI for more realistic testing.
-     * Playwright will re-use the local server if there is already a dev-server running.
+     * Use the preview server on CI for more realistic testing against
+     * the production build (matches what users actually load).
      */
-    command: process.env.CI ? 'npm run preview' : 'npm run dev',
+    command: process.env.CI ? 'pnpm run preview' : 'pnpm run dev',
     port: process.env.CI ? 4173 : 5173,
     reuseExistingServer: !process.env.CI,
   },

@@ -1,6 +1,7 @@
 # Brain
 
 ## Principles
+
 - [[principles]]
 - [[principles/boundary-discipline]]
 - [[principles/cost-aware-delegation]]
@@ -20,5 +21,13 @@
 - [[principles/subtract-before-you-add]]
 - [[principles/verify-with-agent-browser]]
 
+## Codebase
+
+- [[codebase/index]]
+- [[codebase/eslint-flat-config-shapes]]
+- [[codebase/vitest-jsdom-import-meta]]
+- [[codebase/oxlint-monorepo-config-path]]
+
 ## Plans
+
 - [[plans/index]]

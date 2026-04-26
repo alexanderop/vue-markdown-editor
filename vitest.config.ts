@@ -1,14 +1,14 @@
-import { fileURLToPath } from 'node:url'
-import { mergeConfig, defineConfig, configDefaults } from 'vitest/config'
-import viteConfig from './vite.config'
+import { defineConfig } from 'vitest/config'
 
-export default mergeConfig(
-  viteConfig,
-  defineConfig({
-    test: {
-      environment: 'jsdom',
-      exclude: [...configDefaults.exclude, 'e2e/**'],
-      root: fileURLToPath(new URL('./', import.meta.url)),
-    },
-  }),
-)
+// Root Vitest config — discovers per-workspace projects so `pnpm test` runs
+// every workspace from one process. Browser-mode tests live in apps/web and
+// are excluded here; run them via `pnpm --filter @vme/web test:browser`.
+export default defineConfig({
+  test: {
+    projects: [
+      'apps/web/vitest.config.unit.ts',
+      'apps/api/vitest.config.ts',
+      'packages/*/vitest.config.ts',
+    ],
+  },
+})

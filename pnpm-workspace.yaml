@@ -1,0 +1,18 @@
+packages:
+  - apps/*
+  - packages/*
+
+# Refuse versions younger than 24h to dodge fast-rolled supply-chain attacks.
+minimumReleaseAge: 1440
+
+# Block transitive deps that resolve via git/tarball protocols (pnpm 10.26+).
+blockExoticSubdeps: true
+
+# Postinstall scripts are off by default in pnpm 10; allowlist the ones we trust.
+onlyBuiltDependencies:
+  - esbuild
+  - vue-demi
+
+# Fail install if a dep wants to run a script that isn't in the allowlist —
+# forces an explicit decision instead of silent skipping.
+strictDepBuilds: true
