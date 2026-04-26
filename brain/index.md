@@ -4,6 +4,8 @@
 
 - [[principles]]
 - [[principles/boundary-discipline]]
+- [[principles/codemirror-imperative-shell]]
+- [[principles/comark-rendering-pipeline]]
 - [[principles/cost-aware-delegation]]
 - [[principles/encode-lessons-in-structure]]
 - [[principles/exhaust-the-design-space]]
@@ -32,6 +34,7 @@
 - [[codebase/vitest-jsdom-import-meta]]
 - [[codebase/oxlint-monorepo-config-path]]
 - [[codebase/style-guide]]
+- [[codebase/oxlint-vue-config-type-aware-trap]]
 - [[codebase/linear-design-tokens]]
 
 ## Plans

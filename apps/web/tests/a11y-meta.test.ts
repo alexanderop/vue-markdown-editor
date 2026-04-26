@@ -17,9 +17,9 @@ const SRC = path.join(ROOT, 'src')
 const REQUIRED_HELPER = 'expectNoA11yViolations'
 const BROWSER_TEST_FILE = /\.browser\.(?:test|spec)\.(?:ts|tsx)$/
 
-async function walk(dir: string): Promise<string[]> {
+async function walk(dir: string): Promise<Array<string>> {
   const entries = await readdir(dir, { withFileTypes: true })
-  const out: string[] = []
+  const out: Array<string> = []
   for (const entry of entries) {
     const full = path.join(dir, entry.name)
     if (entry.isDirectory()) {
@@ -35,7 +35,7 @@ async function walk(dir: string): Promise<string[]> {
 
 describe('a11y meta-test', () => {
   it('every browser-mode component test asserts a11y', async () => {
-    let files: string[] = []
+    let files: Array<string> = []
     try {
       files = await walk(SRC)
     } catch {
@@ -43,7 +43,7 @@ describe('a11y meta-test', () => {
       return
     }
 
-    const missing: string[] = []
+    const missing: Array<string> = []
     for (const file of files) {
       const contents = await readFile(file, 'utf8')
       if (!contents.includes(REQUIRED_HELPER)) {

@@ -223,7 +223,9 @@ Never remove focus rings. Linear's are subtle but always present.
 
 ## What this codebase ships today
 
-- **Base components:** `@vme/ui` (`Base*` prefix) — see [[ui-package-layout]]
-- **CSS:** Tailwind v4 — wire the tokens above into `@theme` in `tokens.css`
-- **Fonts:** load Inter Variable via `@font-face` with `font-display: swap`
-- **Dark mode:** `data-theme="dark"` on `<html>`, persisted to `localStorage` via VueUse `useColorMode`
+- **Base components:** `@vme/ui` (`Base*` prefix) — see [[ui-package-layout]]. `BaseButton` sizes are `sm` (24) / `md` (28, default) / `lg` (32) / `icon`; `size="default"` is a deprecated runtime alias for `md` (one-release migration window).
+- **Tokens:** wired into `packages/ui/src/styles.css` via `@theme inline`. Color (Mercury / Nordic), `--accent: #5E6AD2`, the type scale (11/12/13/14/16/18/22 with weights 510/510/450/450/450/540/590), radius (3/4/6/8/12/16), stacked low-opacity shadows, and motion (`--duration-instant/fast/base/slow`, `--ease-out`) are all live as Tailwind utilities.
+- **Destructive shade:** `#C92F2F` for button bg + white text (passes WCAG AA at ~5.3:1). `#EB5757` is preserved as `--destructive-soft` for status-icon use.
+- **Fonts:** Inter Variable loaded via `@import url('https://rsms.me/inter/inter.css');` at the top of `apps/web/src/styles/main.css`. Mono falls back to `JetBrains Mono` then `ui-monospace`. The `@import` lives in the consumer (not in `@vme/ui/styles.css`) so PostCSS keeps it as the first statement.
+- **Dark mode:** dark-first. `apps/web/src/composables/useTheme.ts` wraps VueUse `useColorMode` with `selector: 'html'`, `attribute: 'class'`, default `'dark'`, persisted to `localStorage` under `'vme-theme'`.
+- **Focus rings:** baked into each Base component via `focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-1`. A global `*:focus-visible` rule in the base layer was tried first and removed — Tailwind's `utilities` layer always wins over `base`, so a per-component `outline-none` would silently strip the global ring. Per-component utilities sit in the same layer and compose correctly.

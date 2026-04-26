@@ -2,7 +2,7 @@ import type { Component } from 'vue'
 import { mount } from '@vue/test-utils'
 import { createMemoryHistory, createRouter } from 'vue-router'
 
-interface CreateTestAppOptions {
+type CreateTestAppOptions = {
   route?: string
   props?: Record<string, unknown>
 }

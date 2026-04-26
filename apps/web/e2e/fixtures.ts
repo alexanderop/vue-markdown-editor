@@ -10,8 +10,8 @@ import { test as base } from '@playwright/test'
 //     match what the page actually does — a real bug, not noise.
 export const test = base.extend({
   page: async ({ page }, use) => {
-    const consoleErrors: string[] = []
-    const cspViolations: string[] = []
+    const consoleErrors: Array<string> = []
+    const cspViolations: Array<string> = []
 
     page.on('console', (msg) => {
       if (msg.type() !== 'warning' && msg.type() !== 'error') return
@@ -30,7 +30,7 @@ export const test = base.extend({
     await page.addInitScript(() => {
       globalThis.addEventListener('securitypolicyviolation', (event) => {
         // Stash on window so the assertion below can read it via evaluate().
-        const w = globalThis as unknown as { __cspViolations?: string[] }
+        const w = globalThis as unknown as { __cspViolations?: Array<string> }
         w.__cspViolations ??= []
         w.__cspViolations.push(`${event.violatedDirective} blocked ${event.blockedURI}`)
       })
@@ -40,10 +40,10 @@ export const test = base.extend({
 
     const cspFromPage = await page
       .evaluate(() => {
-        const w = globalThis as unknown as { __cspViolations?: string[] }
+        const w = globalThis as unknown as { __cspViolations?: Array<string> }
         return w.__cspViolations ?? []
       })
-      .catch(() => [] as string[])
+      .catch(() => [] as Array<string>)
     cspViolations.push(...cspFromPage)
 
     if (consoleErrors.length > 0) {

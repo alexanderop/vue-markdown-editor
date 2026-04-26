@@ -55,7 +55,7 @@ export default defineConfigWithVueTs(
 
   // Vue accessibility lints — only meaningful for SFCs.
   // Plugin ships an array of flat configs; scope each one to apps/web .vue files.
-  ...(pluginVueA11y.configs['flat/recommended'] as unknown[]).map((c) => ({
+  ...(pluginVueA11y.configs['flat/recommended'] as Array<unknown>).map((c) => ({
     ...(c as Record<string, unknown>),
     files: ['apps/web/**/*.vue'],
   })),
@@ -88,7 +88,19 @@ export default defineConfigWithVueTs(
       '@typescript-eslint/consistent-type-assertions': ['error', { assertionStyle: 'never' }],
       'no-restricted-syntax': ['error', ...UNIVERSAL_RESTRICTED_SYNTAX],
       'local-rules/composable-must-use-vue': 'error',
+      'local-rules/composable-returns-object': 'error',
       'local-rules/extract-condition-variable': 'warn',
+    },
+  },
+
+  // Vue SFC-specific local rules — props type alias name + template handler prefix.
+  {
+    name: 'app/vue-local-rules',
+    files: ['apps/web/**/*.vue'],
+    plugins: { 'local-rules': localRules },
+    rules: {
+      'local-rules/vue-props-type-name': 'error',
+      'local-rules/vue-handler-prefix': 'warn',
     },
   },
 

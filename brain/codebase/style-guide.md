@@ -364,30 +364,29 @@ What the lint config enforces today vs. what stays a convention:
 
 ### Enforced by oxlint / ESLint
 
-| Rule from this guide                          | Lint rule                                                               |
-| --------------------------------------------- | ----------------------------------------------------------------------- |
-| No `any`                                      | `typescript/no-explicit-any`                                            |
-| No type assertions (`x as T`)                 | `@typescript-eslint/consistent-type-assertions: never` (eslint)         |
-| No non-null assertions (`x!`)                 | `typescript/no-non-null-assertion`                                      |
-| `@ts-expect-error` only, with description     | `typescript/ban-ts-comment`                                             |
-| `type` over `interface`                       | `typescript/consistent-type-definitions: type`                          |
-| `Array<T>` over `T[]`                         | `typescript/array-type: { default: generic }`                           |
-| Type imports separated                        | `typescript/consistent-type-imports`                                    |
-| `as const` literal narrowing                  | `typescript/prefer-as-const`                                            |
-| No `enum`                                     | `no-restricted-syntax: TSEnumDeclaration` (eslint)                      |
-| No `else` / `else-if` (early-return instead)  | `no-restricted-syntax: IfStatement[alternate]` (eslint)                 |
-| Naming (booleans, constants, types, generics) | `typescript/naming-convention`                                          |
-| Named exports                                 | `import-x/no-default-export`                                            |
-| Component PascalCase + matches filename       | `vue/component-definition-name-casing`, `vue/match-component-file-name` |
-| Prop camelCase, attribute kebab               | `vue/prop-name-casing`, `vue/attribute-hyphenation`                     |
-| Custom event kebab-case                       | `vue/custom-event-name-casing`                                          |
-| Composable filename imports Vue/VueUse        | `local-rules/composable-must-use-vue`                                   |
-| Composable returns an object                  | `local-rules/composable-returns-object`                                 |
-| Props type alias `[ComponentName]Props`       | `local-rules/vue-props-type-name`                                       |
-| `@event="handle*"` impl prefix                | `local-rules/vue-handler-prefix`                                        |
-| Extract complex `if` conditions               | `local-rules/extract-condition-variable`                                |
-| Test description shape, AAA                   | `vitest/*` family (`prefer-to-be`, `consistent-test-it`, …)             |
-| Import cycles, ordering                       | `import-x/no-cycle`, `import-x/order`                                   |
+| Rule from this guide                         | Lint rule                                                               |
+| -------------------------------------------- | ----------------------------------------------------------------------- |
+| No `any`                                     | `typescript/no-explicit-any`                                            |
+| No type assertions (`x as T`)                | `@typescript-eslint/consistent-type-assertions: never` (eslint)         |
+| No non-null assertions (`x!`)                | `typescript/no-non-null-assertion`                                      |
+| `@ts-expect-error` only, with description    | `typescript/ban-ts-comment`                                             |
+| `type` over `interface`                      | `typescript/consistent-type-definitions: type`                          |
+| `Array<T>` over `T[]`                        | `typescript/array-type: { default: generic }`                           |
+| Type imports separated                       | _Convention-only_ — see [[oxlint-vue-config-type-aware-trap]]           |
+| `as const` literal narrowing                 | `typescript/prefer-as-const`                                            |
+| No `enum`                                    | `no-restricted-syntax: TSEnumDeclaration` (eslint)                      |
+| No `else` / `else-if` (early-return instead) | `no-restricted-syntax: IfStatement[alternate]` (eslint)                 |
+| Named exports                                | `import/no-default-export` (oxlint)                                     |
+| Component PascalCase + matches filename      | `vue/component-definition-name-casing`, `vue/match-component-file-name` |
+| Prop camelCase, attribute kebab              | `vue/prop-name-casing`, `vue/attribute-hyphenation`                     |
+| Custom event kebab-case                      | `vue/custom-event-name-casing`                                          |
+| Composable filename imports Vue/VueUse       | `local-rules/composable-must-use-vue`                                   |
+| Composable returns an object                 | `local-rules/composable-returns-object`                                 |
+| Props type alias `[ComponentName]Props`      | `local-rules/vue-props-type-name`                                       |
+| `@event="handle*"` impl prefix               | `local-rules/vue-handler-prefix`                                        |
+| Extract complex `if` conditions              | `local-rules/extract-condition-variable`                                |
+| Test description shape, AAA                  | `vitest/*` family (`prefer-to-be`, `consistent-test-it`, …)             |
+| Import cycles, ordering                      | `import-x/no-cycle`, `import-x/order`                                   |
 
 ### Convention-only (caught in code review)
 
@@ -398,7 +397,8 @@ What the lint config enforces today vs. what stays a convention:
 - Template literal types over wide `string`
 - Immutability via `Readonly` / `ReadonlyArray`
 - `null` vs `undefined` semantics
+- `import type` separation — couldn't be enforced because `consistent-type-imports` flips on type-aware parsing repo-wide via `@vue/eslint-config-typescript`; see [[oxlint-vue-config-type-aware-trap]]
+- Naming conventions (booleans `is*`/`has*`, `CONSTANT_CASE`, `T`-prefix generics, acronyms as words) — `typescript/naming-convention` not yet implemented in oxlint
 - Code collocation by feature
 - Container vs UI vs design-system split
 - "Don't seed state from props" — prefix with `initial` if you must
-- Acronyms as words (`Url`, not `URL`)

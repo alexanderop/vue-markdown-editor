@@ -16,7 +16,7 @@ type RenderArgs = RenderOptions<Record<string, unknown>>
 type Case = readonly [name: string, options: RenderArgs]
 
 export function renderEach(component: Component, cases: ReadonlyArray<Case>) {
-  it.each(cases as readonly Case[])('should render %s correctly', (_name, options) => {
+  it.each(cases as ReadonlyArray<Case>)('should render %s correctly', (_name, options) => {
     const { container } = render(component, options as RenderArgs)
     expect(container.innerHTML).toMatchSnapshot()
   })

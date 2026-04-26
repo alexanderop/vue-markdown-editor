@@ -10,6 +10,21 @@
   },
   "rules": {
     "typescript/no-explicit-any": "error",
+    "typescript/consistent-type-definitions": ["error", "type"],
+    "typescript/array-type": ["error", { "default": "generic", "readonly": "generic" }],
+    "typescript/no-non-null-assertion": "error",
+    "typescript/prefer-as-const": "error",
+    "typescript/ban-ts-comment": [
+      "error",
+      {
+        "ts-ignore": true,
+        "ts-nocheck": true,
+        "ts-check": false,
+        "ts-expect-error": "allow-with-description",
+        "minimumDescriptionLength": 10
+      }
+    ],
+    "import/no-default-export": "error",
     "eslint/no-console": ["error", { "allow": ["warn", "error"] }]
   },
   "overrides": [
@@ -25,6 +40,27 @@
     {
       "files": ["apps/api/**/*.ts"],
       "rules": { "eslint/no-console": "off" }
+    },
+    {
+      "files": [
+        "**/*.vue",
+        "**/vite.config.*",
+        "**/vitest.config.*",
+        "**/playwright.config.*",
+        "**/eslint.config.*",
+        "**/knip.config.*",
+        "**/tailwind.config.*",
+        "**/postcss.config.*",
+        "**/*.stories.{ts,tsx}",
+        "**/router/**/index.ts",
+        "apps/web/src/main.ts",
+        "apps/web/src/router/**/*.ts"
+      ],
+      "rules": { "import/no-default-export": "off" }
+    },
+    {
+      "files": ["**/*.d.ts", "**/types/**/*.ts"],
+      "rules": { "typescript/consistent-type-definitions": "off" }
     }
   ]
 }
