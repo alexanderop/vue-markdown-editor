@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@vme/ui": "workspace:*",
+    "@vueuse/core": "catalog:",
     "pinia": "catalog:",
     "vue": "catalog:",
     "vue-router": "catalog:"

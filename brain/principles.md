@@ -7,7 +7,9 @@
 - [[principles/subtract-before-you-add]]
 - [[principles/outcome-oriented-execution]]
 - [[principles/experience-first]]
+- [[principles/linear-design-style]]
 - [[principles/exhaust-the-design-space]]
+- [[principles/prefer-vueuse]]
 
 ## Architecture
 
@@ -15,6 +17,7 @@
 - [[principles/make-operations-idempotent]]
 - [[principles/migrate-callers-then-delete-legacy-apis]]
 - [[principles/serialize-shared-state-mutations]]
+- [[principles/vue-layered-components]]
 
 ## Verification
 

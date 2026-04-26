@@ -8,3 +8,5 @@ Project-specific knowledge and tooling gotchas for this monorepo.
 - [[tailwind-v4-monorepo-source]] — Tailwind v4 only scans the project containing the CSS entry; cross-package components in `@vme/ui` need an explicit `@source` directive
 - [[ui-package-layout]] — `@vme/ui` is the local shadcn-style component library (`Base*` prefix); pattern + dependencies summary
 - [[ui-component-tests]] — testing `@vme/ui`: browser mode only, scope axe to `container`, drop manual `cleanup()`, matrix snapshots via `renderEach`
+- [[style-guide]] — Vue + TS style guide adapted from typescript-style-guide.com; lists what's lint-enforced vs convention-only
+- [[linear-design-tokens]] — concrete visual tokens (fonts, colors, spacing, radius, shadows, motion) distilled from Linear/Orbiter; pairs with the philosophy in `principles/linear-design-style`

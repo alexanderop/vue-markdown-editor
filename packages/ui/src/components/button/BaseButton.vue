@@ -5,7 +5,7 @@ import { cn } from '../../lib/utils'
 
 import { type BaseButtonVariants, baseButtonVariants } from './variants'
 
-interface Props {
+type Props = {
   variant?: BaseButtonVariants['variant']
   size?: BaseButtonVariants['size']
   class?: HTMLAttributes['class']
