@@ -16,10 +16,10 @@ shadcn-vue design language and patterns.
   it AFTER its base classes so consumers can override.
 - **Variants:** `class-variance-authority`. Co-locate the `cva()` config in
   `variants.ts` next to the component and re-export `<Name>Variants` type.
-- **Headless primitives:** none of the starter components use `reka-ui`.
-  Reach for it only when behavior actually requires it (Dialog, Dropdown,
-  Combobox, etc.) — for plain styled wrappers (Button/Input/Label/Card),
-  native HTML elements are simpler and lighter.
+- **Headless primitives:** prefer `reka-ui` for any component whose value is
+  behaviour (Dialog, Dropdown, Combobox, Popover, Tooltip, Tabs, …) —
+  see [[../principles/prefer-reka-ui]]. For plain styled wrappers
+  (Button/Input/Label/Card), native HTML stays native.
 
 ## Theming
 

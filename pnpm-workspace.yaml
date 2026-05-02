@@ -46,6 +46,7 @@ catalog:
   lucide-vue-next: ^1.0.0
   pinia: ^3.0.4
   playwright: ^1.59.1
+  reka-ui: ^2.9.6
   shiki: ^4.0.2
   tailwind-merge: ^3.3.2
   tailwindcss: ^4.1.18

@@ -10,6 +10,7 @@
 - [[principles/linear-design-style]]
 - [[principles/exhaust-the-design-space]]
 - [[principles/prefer-vueuse]]
+- [[principles/prefer-reka-ui]]
 
 ## Architecture
 
